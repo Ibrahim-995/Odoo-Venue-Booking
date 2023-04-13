@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_dsl_venue,dsl_venue,model_dsl_venue,base.group_user,1,1,1,1
+
+access_order_details,order_details,model_order_details,base.group_user,1,1,1,1

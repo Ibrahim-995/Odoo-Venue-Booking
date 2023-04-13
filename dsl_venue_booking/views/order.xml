@@ -1,0 +1,55 @@
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_order_tree">
+			<field name="name">Order list</field>
+			<field name="model">order.details</field>
+			<field name="arch" type="xml">
+				<tree string="Order list">
+					<field name="order_id" />
+					<field name="name" />
+					<field name="email" />
+					<field name="phone" />
+				</tree>
+			</field>
+		</record>
+		<record id="orderdetails_form_view" model="ir.ui.view">
+			<field name="name">order.form.view</field>
+			<field name="model">order.details</field>
+			<field name="arch" type="xml">
+				<form>
+					<h1 style="color: white;background-color:#71639e;text-align: center;">Customer Profile</h1>
+					<sheet>
+						<group>
+							<group>
+								<field name="order_id" />
+								<field name="name" />
+								<field name="email" />
+								<field name="phone" />
+								<field name="address" />
+							</group>
+							<group>
+								<field name="payment_method" />
+								<field name="order_date" />
+								<field name="venue_name" />
+								<field name="venue_capacity" />
+							        <field name="shift" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<record id="open_view_order_tree" model="ir.actions.act_window">
+			<field name="name">Order List</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">order.details</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="view_order_tree" />
+			<field name="help" type="html">
+				<p class="o_view_nocontent_smiling_face">
+					No Record found!
+				</p>
+			</field>
+		</record>
+	</data>
+</odoo>

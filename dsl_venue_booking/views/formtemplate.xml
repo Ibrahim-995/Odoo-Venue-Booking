@@ -1,0 +1,113 @@
+<odoo>
+	<record id="menue_venues" model="website.menu">
+		<field name="name">
+			Venue Reservation
+		</field>
+		<field name="url">
+			/venues
+		</field>
+		<field name="parent_id" ref="website.main_menu" />
+	</record>
+	<template id="template_customer_details" name="Customer Order Form">
+		<t t-call="website.layout">
+			<div class="container">
+				<section class="s_picture pt48 pb24 o_cc o_cc2 o_colored_level" data-snippet="s_picture" data-name="Picture" t-att-style="'background-image: none;'">
+					<div id="wrap" class="oe_structure oe_empty">
+						<h1 class="text-center">
+							Order Information
+						</h1>
+						<form role="form" action="/submit/details" method="POST">
+							<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+							<div>
+								<p>
+									<label for="venue_name">
+										Venue Name:
+									</label>
+									<input type="text" id="venue_name" name="venue_name" t-att-value="venue_name" readonly="1" />
+								</p>
+								<p>
+									<label for="venue_capacity">
+										Capacity:
+									</label>
+									<input type="number" id="venue_capacity" name="venue_capacity" t-att-value="venue_capacity" readonly="1" />
+								</p>
+							</div>
+							<div class="form-group">
+								<label for="customer_name">
+									Order ID:
+								</label>
+								<input type="text" class="form-control" id="order_id" name="order_id" required="required" />
+							</div>
+							<div class="form-group">
+								<label for="customer_name">
+									Customer Name:
+								</label>
+								<input type="text" class="form-control" id="name" name="name" required="required" />
+							</div>
+							<div class="form-group">
+								<label for="email">
+									Email:
+								</label>
+								<input type="email" class="form-control" id="email" name="email" required="required" />
+							</div>
+							<div class="form-group">
+								<label for="phone">
+									Phone:
+								</label>
+								<input type="text" class="form-control" id="phone" name="phone" required="required" />
+							</div>
+							<div class="form-group">
+								<label for="address">
+									Address:
+								</label>
+								<input type="text" class="form-control" id="address" name="address" required="required" />
+							</div>
+							<div class="form-group">
+								<label for="payment_method">
+									Payment Method:
+								</label>
+								<select class="form-control" id="payment_method" name="payment_method" required="required">
+									<option value="credit_card">
+										Credit Card
+									</option>
+									<option value="cash">
+										Cash
+									</option>
+									<option value="bkash">
+										B-Kash
+									</option>
+									<option value="paypal">
+										Paypal
+									</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="order_date">
+									Order Date:
+								</label>
+								<input type="date" class="form-control" id="order_date" name="order_date" value="{{ order_date.strftime('%Y-%m-%d') }}" required="required" />
+							</div>
+                            <div class="form-group">
+								<label for="payment_method">
+									Shedule:
+								</label>
+								<select class="form-control" id="shift" name="shift" required="required">
+									<option value="lunch">
+										Lunch
+									</option>
+									<option value="dinner">
+										Dinner
+									</option>
+
+								</select>
+							</div>
+							<button type="submit" class="btn btn-primary" style="margin-bottom: 10px;">
+								Confirm Order
+							</button>
+						</form>
+					</div>
+				</section>
+			</div>
+		</t>
+	</template>
+</odoo>

@@ -1,0 +1,44 @@
+<odoo>
+	<template id="template_venue_web" name="Venue List">
+		<t t-call="website.layout">
+			<div class="container">
+				<div id="wrap" class="oe_structure oe_empty">
+					<section class="s_picture pt48 pb24 o_cc o_cc2 o_colored_level" data-snippet="s_picture" data-name="Picture" t-att-style="'background-image: none;'">
+						<div class="container">
+							<h1 class="text-center">
+								Our Venues
+							</h1>
+							<div class="row justify-content-center">
+								<t t-foreach="venues" t-as="venue" t-if="venue">
+									<div class="col-lg-6 mb-4">
+										<div class="card">
+											<img t-att-src="'/web/image/dsl.venue/' + str(venue.id) + '/image'" class="card-img-top" alt="" loading="lazy" style="width: 600px; height: 300px;" />
+											<div class="card-body">
+												<h2 class="card-title" style="font-weight: bold; font-size: 30px;" t-esc="venue.name">
+												</h2>
+												<p class="card-text" style="font-size: 18px;" t-esc="venue.description">
+												</p>
+												<p class="card-text" style="font-size: 16px;" t-esc="'Capacity: ' + str(venue.capacity)">
+												</p>
+												<a t-attf-href="/customer/details/{{venue.id}}" t-attf-venue-name="{{venue.name}}" t-attf-venue-capacity="{{venue.capacity}}" class="btn btn-primary">
+													Order Venue
+												</a>
+											</div>
+										</div>
+									</div>
+								</t>
+								<t t-if="not venues">
+									<div class="col-lg-12 mb-4">
+										<p>
+											No venues to display
+										</p>
+									</div>
+								</t>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</t>
+	</template>
+</odoo>

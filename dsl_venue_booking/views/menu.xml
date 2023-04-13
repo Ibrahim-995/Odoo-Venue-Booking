@@ -1,0 +1,7 @@
+<odoo>
+	<data>
+		<menuitem id="main_venue_menu_root" name="Venue Booking" action="action_venue_kanban" />
+		<menuitem id="venue_kanban_menu" name="Venue List" parent="main_venue_menu_root" action="action_venue_kanban" />
+		<menuitem id="order_list_menu" name="Order List" parent="main_venue_menu_root" action="open_view_order_tree" />
+	</data>
+</odoo>

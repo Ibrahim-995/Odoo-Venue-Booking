@@ -1,0 +1,70 @@
+<odoo>
+  <data>
+
+<!-- Define the kanban view -->
+  <record id="dsl_venue_kanban_view" model="ir.ui.view">
+    <field name="name">DSL Venue Kanban</field>
+    <field name="model">dsl.venue</field>
+    <field name="arch" type="xml">
+        <kanban class="o_res_partner_kanban">
+            <field name="id"/>
+            <field name="image"/>
+            <templates>
+                <t t-name="kanban-box">
+                    <div t-attf-class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                        <div class="o_kanban_image d-none d-md-block"
+                             t-attf-style="background-image:url('#{kanban_image('dsl.venue', 'image', record.id.raw_value, placeholder)}')">
+                        </div>
+
+                        <div class="oe_kanban_details">
+                            <h4>
+                                <a type="open">
+                                    <field name="name"/>
+                                </a>
+                            </h4>
+                            <ul>
+                                <li t-if="record.capacity.raw_value">
+                                    <field name="capacity"/>
+                                </li>
+                                <li t-if="record.description.raw_value">
+                                    <field name="description"/>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+    </field>
+</record>
+
+    <!-- Define the form view -->
+    <record id="view_venue_form" model="ir.ui.view">
+      <field name="name">venue.form</field>
+      <field name="model">dsl.venue</field>
+      <field name="arch" type="xml">
+        <form>
+            <h1 style="color: white;background-color:#71639e;text-align: center;">Venue Details</h1>
+
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="capacity"/>
+              <field name="description"/>
+              <field name="image" widget="image" options='{"preview_image": "image"}'/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Define the action record -->
+    <record id="action_venue_kanban" model="ir.actions.act_window">
+      <field name="name">Create Venue</field>
+      <field name="res_model">dsl.venue</field>
+      <field name="view_mode">kanban,form</field>
+      <field name="view_id" ref="dsl_venue_kanban_view"/>
+      <field name="context">{}</field>
+    </record>
+  </data>
+</odoo>
